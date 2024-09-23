@@ -37,12 +37,15 @@
         console.log(data.weather[0].main);
         console.log(data.main.temp);
         console.log(data.main.humidity);
-        console.log(data.timezone);
+        console.log(data.dt);
         console.log(data.name);
         console.log(data.main.feels_like);
         console.log(data.main.pressure);
         console.log(data.wind.speed);
         console.log(data.weather[0].icon);
+        const date = new Date((data.dt)*1000)
+        console.log(date);
+        
         res.innerHTML=`
         <img class="w-50 "  src=${`https://rodrigokamada.github.io/openweathermap/images/${data.weather[0].icon}_t@4x.png`}><br>
         <div style="color:white; class="text-center ">
@@ -52,7 +55,7 @@
         </div>
         </div>
       <div class="d-md-flex mt-3">
-        <div style="color:white; class="box shadow w-100 mx-1 p-1 d-flex flex-column align-items-center rounded">humidity
+        <div style="color:white;" class="box shadow w-100 mx-1 mt-2 mt-md-0 p-1 d-flex flex-column align-items-center rounded">humidity
           <i class="mt-1 fa-solid fa-water fa-2x"></i>
         ${data.main.humidity}%
         </div>
@@ -60,17 +63,18 @@
           <i class="mt-1 fa-solid fa-wind fa-2x"></i>
         ${Math.round(data.wind.speed)}km/h
         </div>
-        <div style="color:white; class="box shadow w-100 mx-1 mt-2 mt-md-0 p-1 d-flex flex-column align-items-center rounded">pressure
+          <div style="color:white;" class="box shadow w-100 mx-1 mt-2 mt-md-0 p-1 d-flex flex-column align-items-center rounded">Pressure
           <i class="mt-1 fa-solid fa-gauge-simple-high fa-2x"></i>
         ${data.main.pressure}Hpa
         </div>
+      <p style="color:white; " class="text-center mt-4">${date}</p>
       </div>
         `
         
        }).catch((err)=>{
         res.innerHTML=`<div class="text-center">
-          <img class="w-50" src="./images/notfound.webp">
-          <h4 class="text-warning">Sorry location not found !</h4>
+          <img class="w-50 mt-3" src="./img/loc.png">
+          <h4 class="text-warning mt-2">Sorry location not found !</h4>
         </div>
        `
         
