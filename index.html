@@ -13,7 +13,7 @@
 </head>
 <body style="background-image: url(https://cdn.pixabay.com/photo/2022/09/21/17/02/blue-background-7470781_1280.jpg);"  >
   <div class="row">
-    <div class="col-md-4"><h1 style="padding: 10px;"> FIND WEATHER</h1></div>
+    <div class="col-md-4"><h1 style="padding: 10px; margin-left: 25px;"> FIND WEATHER</h1></div>
     <div class="col-md-4 p-4 rounded mt-5" style="background-image: url(https://cdn.pixabay.com/photo/2022/09/21/17/02/blue-background-7470781_1280.jpg);">
       <div class="d-flex">
         <input type="text" id="city" class="form-control" placeholder="Enter place">
@@ -31,7 +31,7 @@
 <script>
   const search= async() => {
     if(city.value){
-      const response = await fetch(`https:api.openweathermap.org/data/2.5/weather?q=${city.value}&appid=5fe36b192ffd1c36dffb6752bc1722b2`)
+      const response = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city.value}&appid=5fe36b192ffd1c36dffb6752bc1722b2`)
       response.json().then((data)=>{
         console.log(data);
         console.log(data.weather[0].main);
@@ -44,7 +44,7 @@
         console.log(data.wind.speed);
         console.log(data.weather[0].icon);
         res.innerHTML=`
-        <img class="w-50 "  src=${`https:rodrigokamada.github.io/openweathermap/images/${data.weather[0].icon}_t@4x.png`}><br>
+        <img class="w-50 "  src=${`https://rodrigokamada.github.io/openweathermap/images/${data.weather[0].icon}_t@4x.png`}><br>
         <div style="color:white; class="text-center ">
           
           <span>${Math.round(((data.main.temp*1000)-273.15*1000)/1000)}℃,</span>${data.weather[0].main}<br>feels like ${Math.round(((data.main.feels_like*1000)-273.15*1000)/1000)}℃
@@ -70,7 +70,7 @@
        }).catch((err)=>{
         res.innerHTML=`<div class="text-center">
           <img class="w-50" src="./images/notfound.webp">
-          <h4 class="text-danger">Sorry location not found</h4>
+          <h4 class="text-warning">Sorry location not found !</h4>
         </div>
        `
         
